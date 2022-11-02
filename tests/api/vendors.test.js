@@ -26,34 +26,30 @@ const vendorPayload = {
   
   test.todo("pass empty test cases");
   
-    beforeAll(async () => {
-      connection = await connectToTestDatbase();
-    });
-  
-    // afterEach(async () => {
-    //   await resetDatabase(connection);
+    // beforeAll(async () => {
+    //   connection = await connectToTestDatbase();
     // });
   
-    afterAll(async () => {
-      await resetDatabase(connection);
-      await closeConnection(connection);
-    });
+    // afterAll(async () => {
+    //   await resetDatabase(connection);
+    //   await closeConnection(connection);
+    // });
 
 
-    it("Add vendors ", async () => {
+    // it("Add vendors ", async () => {
 
-        const token = report_token;
-        const res_data  = await request(URL)
-          .post("/api/v1/vendors")
-          .set("report_token", token)
-          .send(vendorPayload);
+    //     const token = report_token;
+    //     const res_data  = await request(URL)
+    //       .post("/api/v1/vendors")
+    //       .set("report_token", token)
+    //       .send(vendorPayload);
     
-            const results =  res_data?.body.data;
-            // console.log("add vendor result", results);
-            expect(results.id).toBe(vendorPayload.id);
-            expect(results.name).toBe(vendorPayload.name);
-            expect(results.govt_id).toBe(vendorPayload.govt_id);
-        });
+    //         const results =  res_data?.body.data;
+    //         // console.log("add vendor result", results);
+    //         expect(results.id).toBe(vendorPayload.id);
+    //         expect(results.name).toBe(vendorPayload.name);
+    //         expect(results.govt_id).toBe(vendorPayload.govt_id);
+    //     });
 
 
     });
