@@ -26,6 +26,7 @@ const BeneficiaryToBeUpdated = {
 describe("Beneficiary Controller Test Cases", () => {
   it("should create a new Beneficiary", async () => {
     const beneficiary = await beneficiaryC.add(BeneficiaryToBeCreated);
+    expect(beneficiary.id).toBe(BeneficiaryToBeCreated.id);
     expect(beneficiary.name).toBe(BeneficiaryToBeCreated.name);
   });
 });
