@@ -22,7 +22,7 @@ const BulkAdd = [
   {
     id: "0x064e0f1cf92b93af161e42f60bc5cb1fac0a0cdb2d2727c274ce70f64f35dads",
     name: "test Rempel",
-    wallet_address: "0x6e18753B910F2FD118f3E0A69c18F31DD81995A6",
+    walletAddress: "0x6e18753B910F2FD118f3E0A69c18F31DD81995A6",
     gender: "F",
     phone: "9814719874",
     age: 41,
@@ -32,7 +32,7 @@ const BulkAdd = [
   {
     id: "0x064e0f1cf92b93af161e42f60bc5cb1fac0a0cdb2d2727c274ce70f64f35dadq",
     name: "test Rempel",
-    wallet_address: "0x6e18753B910F2FD118f3E0A69c18F31DD81995A1",
+    walletAddress: "0x6e18753B910F2FD118f3E0A69c18F31DD81995A1",
     gender: "M",
     phone: "9814719074",
     age: 41,

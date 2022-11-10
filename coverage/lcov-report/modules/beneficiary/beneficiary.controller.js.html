@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">37.93% </span>
+                <span class="strong">58.62% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/29</span>
+                <span class='fraction'>17/29</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">15.38% </span>
+                <span class="strong">38.46% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/13</span>
+                <span class='fraction'>5/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">37.93% </span>
+                <span class="strong">58.62% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/29</span>
+                <span class='fraction'>17/29</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -131,7 +131,8 @@
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -163,8 +164,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -177,18 +179,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -229,10 +231,11 @@ module.exports = class extends AbstractController {
     }
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  as</span>ync bulkAdd(payload, req) {
+  async bulkAdd(payload, req) {
     // checkToken(req);
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >      return this.table.bulkCreate(payload);</span>
+    try {
+      const res = await this.table.bulkCreate(payload,{returning: ["name"], });
+      return res;
     } catch (err) {
 <span class="cstat-no" title="statement not covered" >      console.log(err);</span>
     }
@@ -244,19 +247,19 @@ module.exports = class extends AbstractController {
 <span class="cstat-no" title="statement not covered" >    return list;</span>
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  as</span>ync getById(id, req) {
-<span class="cstat-no" title="statement not covered" >    checkToken(req);</span>
-<span class="cstat-no" title="statement not covered" >    return this.table.findByPk(id);</span>
+  async getById(id, req) {
+    // checkToken(req);
+    return this.table.findByPk(id);
   }
 &nbsp;
   // reporting
 &nbsp;
-<span class="fstat-no" title="function not covered" >  as</span>ync getBeneficiaryCountByGroup() {
-    const list = <span class="cstat-no" title="statement not covered" >await this.table.findAll({</span>
+  async getBeneficiaryCountByGroup() {
+    const list = await this.table.findAll({
       attributes: ["group", [this.db.Sequelize.fn("COUNT", "group"), "count"]],
       group: ["group"],
     });
-<span class="cstat-no" title="statement not covered" >    return list;</span>
+    return list;
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  as</span>ync getBeneficiaryCountByGender() {
@@ -274,7 +277,7 @@ module.exports = class extends AbstractController {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed Nov 02 2022 14:31:17 GMT+0545 (Nepal Time)
+                at Mon Nov 07 2022 12:57:22 GMT+0545 (Nepal Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>

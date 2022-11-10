@@ -31,7 +31,8 @@ module.exports = class extends AbstractController {
   async bulkAdd(payload, req) {
     // checkToken(req);
     try {
-      return this.table.bulkCreate(payload);
+      const res = await this.table.bulkCreate(payload,{returning: ["name"], });
+      return res;
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +45,7 @@ module.exports = class extends AbstractController {
   }
 
   async getById(id, req) {
-    checkToken(req);
+    // checkToken(req);
     return this.table.findByPk(id);
   }
 
